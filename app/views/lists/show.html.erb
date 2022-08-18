@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <h2><%= @list.name %></h2>
+  <% if @list.movies.length == 0 %>
+    <p>This list has no movie yet.</p>
+  <% else %>
+    <%= @list.movies.name %>
+  <% end %>
+
+  <%= link_to "Add movie to list", "/bookmarks/new" %>
+</div>

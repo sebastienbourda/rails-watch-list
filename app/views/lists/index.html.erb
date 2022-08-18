@@ -1,1 +1,17 @@
-<h1>Lists view</h1>
+<div class="container-fluid">
+  <h2>Lists view</h2>
+  <%= link_to "Add new List", "lists/new", class: "btn btn-primary" %>
+
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-4 my-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= list.name %></h5>
+            <%= link_to "See list", "lists/#{list.id}", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
