@@ -258,7 +258,6 @@ DEPENDENCIES
   bootsnap
   cloudinary
   debug
-  dotenv-rails
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
