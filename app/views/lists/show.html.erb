@@ -6,5 +6,18 @@
     <%= @list.movies.name %>
   <% end %>
 
-  <%= link_to "Add movie to list", "/bookmarks/new" %>
+  <% @list.movies.each do |movie| %>
+    <%= movie.title %>
+    <% bookmark = Bookmark.find_by(movie: movie, list: @list) %>
+    <%= bookmark.comment %>
+  <% end %>
+
+  <div class="container-fluid">
+    <%= simple_form_for [@list, @bookmark] do |f| %>
+      <%= f.input :comment, placeholder: 'Enter a comment about the movie' %>
+      <%= f.association :movie %>
+      <%= f.submit class: 'btn btn-flat' %>
+    <% end %>
+  </div>
+</div>
 </div>

@@ -2,14 +2,14 @@
 
 # List Controller
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[show]
+  before_action :set_list, only: %i[show destroy]
 
   def index
     @lists = List.all
   end
 
   def show
-    set_list
+    @bookmark = Bookmark.new
   end
 
   def new
@@ -23,10 +23,6 @@ class ListsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def display_movies
-    @movies = Movie.all
   end
 
   private
