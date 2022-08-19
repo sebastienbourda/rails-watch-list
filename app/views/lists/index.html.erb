@@ -1,17 +1,56 @@
-<div class="container-fluid">
-  <h2>Lists view</h2>
-  <%= link_to "Add new List", "lists/new", class: "btn btn-primary" %>
+<main>
 
-  <div class="row">
-    <% @lists.each do |list| %>
-      <div class="col-4 my-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= list.name %></h5>
-            <%= link_to "See list", "lists/#{list.id}", class: "btn btn-primary" %>
-          </div>
-        </div>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">All your lists</h1>
+        <p class="lead text-muted">Find below all your lists of movies. You can access by clicking the list.</p>
+        <p>
+          <%= link_to "Add new List", "lists/new", class: "btn btn-primary my-2" %>
+        </p>
       </div>
-    <% end %>
+    </div>
+  </section>
+
+  <div class="list py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% @lists.each do |list| %>
+          <div class="col-lg-4 my-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= list.name %></h5>
+                <%= link_to "See list", "lists/#{list.id}", class: "btn btn-outline-primary" %>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteListModal">
+                  Delete List
+                </button>
+                <%# <%= button_to "Delete list", list_path(list.id), class: "btn btn-outline-danger", data: {bs_toggle:"modal", bs_target: "#deleteListModal", turbo_method: :delete} %>
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteListModal" tabindex="-1" aria-labelledby="deleteListModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="deleteListModalLabel">Delete List</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Are you sure to delete this list?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <%= link_to "Delete list", list_path(list.id), class: "btn btn-outline-danger", data: { turbo_method: :delete } %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+
+</main>
